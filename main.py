@@ -28,5 +28,12 @@ def discord_bot_token():
     data = {'token': creds[auth.username()]['discord_token']}
     return jsonify(data), 200
 
+@app.route('/credentials/weather', methods=['GET'])
+@auth.login_required
+def weather_token():
+    creds = json.load(open('./.master_cred.json'))
+    data = {'token': creds[auth.username()]['weather']}
+    return jsonify(data), 200
+
 if __name__ == '__main__':
     app.run()
