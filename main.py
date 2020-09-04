@@ -35,5 +35,12 @@ def weather_token():
     data = {'token': creds[auth.username()]['weather']}
     return jsonify(data), 200
 
+@app.route('/credentials/movie_webhook', methods=['GET'])
+@auth.login_required
+def movie_webhook_lookup():
+    creds = json.load(open('./.master_cred.json'))
+    data = {'token': creds[auth.username()]['movie_hook']}
+    return jsonify(data), 200
+
 if __name__ == '__main__':
     app.run()
